@@ -1,10 +1,10 @@
 {% load i18n %}
 
-<div class="container text-center" id="{{ name }}-mw-wrap">
+<div class="container mw-wrap" id="{{ name }}-mw-wrap">
   {% block container %}
     <div class="row mb-2">
         {% block header %}
-          <div class="col-auto">
+          <div class="col-auto text-center">
             <a  class="mw-btn mw-btn-primary mw-btn-coordinates">{% trans "Edit coordinates" %} <i class="icon-down-dir" ></i></a>
           </div>
 
@@ -21,7 +21,7 @@
           </div>
 
           <!--<a class="mw-btn mw-btn-info mw-btn-my-location" >{% trans "Use My Location" %}</a>-->
-          <div class="col-auto me-auto">
+          <div class="col-auto me-auto text-center">
             <a class="mw-btn mw-btn-warning mw-btn-add-marker" ><i class="icon-location"></i> <span class="point-text">{% trans "Choose point on map" %}</span></a>
           </div>
           <div class="col-auto">
@@ -46,8 +46,8 @@
       </div>
     </div>
 
-    <div class="row mt-2">
-      <div class="col-auto align-self-end">
+    <div class="row justify-content-end mt-2">
+      <div class="col-auto">
         <span class="mw-help-text help-text"></span>
         <a class="mw-btn mw-btn-delete pull-right {{ serialized|yesno:"mw-btn-danger, mw-btn-default disabled" }}" ><i class="icon-trash-empty"></i></a>
       </div>
