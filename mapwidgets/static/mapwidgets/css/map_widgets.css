@@ -60,7 +60,7 @@
     width: 100%;
 }
 
-.mw-wrap .mw-input-control, .mw-wrap .mapboxgl-ctrl-geocoder--input{
+.mw-wrap .form-control, .mw-wrap .mapboxgl-ctrl-geocoder--input{
     border: 1px solid #ccc;
     font-family: inherit;
     margin: 0;
@@ -102,7 +102,7 @@
     z-index:10
 }
 
-.mw-wrap .mw-input-control:focus {
+.mw-wrap .form-control:focus {
     border-color: #66afe9;
     outline: 0;
     -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
@@ -148,12 +148,13 @@
 }
 
 
-.mw-coordinates-overlay input.mw-input-control{
+.mw-coordinates-overlay input.form-control{
     margin: 5px 0 10px 0;
+    max-width: 160px;
     width: 160px;
 }
 
-.mw-coordinates-overlay input.mw-input-control.error{
+.mw-coordinates-overlay input.form-control.error{
     border-color: #a94442;
     -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
     box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
