@@ -145,6 +145,7 @@
     float: none;
     width: 155px;
     height: 60px;
+    padding-top: 10px;
     font-weight: bold;
     color: #36454F;
 }
@@ -152,7 +153,7 @@
 
 .mw-coordinates-overlay input.form-control{
     margin: 5px 0 10px 0;
-    width: 180px;
+    width: 160px;
 }
 
 .mw-coordinates-overlay input.form-control.error{
