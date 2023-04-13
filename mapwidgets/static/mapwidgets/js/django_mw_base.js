@@ -156,18 +156,18 @@
 			this.coordinatesOverlayToggleBtn.removeClass("active");
 		},
 
-		handleMyLocationBtnClick: function(){
-			this.showOverlay();
-			if(navigator.geolocation){
-				navigator.geolocation.getCurrentPosition(
-					this.handleCurrentPosition.bind(this),
-					this.handlecurrentPositionError.bind(this)
-				);
-			}else{
-				this.handlecurrentPositionError();
-			}
+		// handleMyLocationBtnClick: function(){
+		// 	this.showOverlay();
+		// 	if(navigator.geolocation){
+		// 		navigator.geolocation.getCurrentPosition(
+		// 			this.handleCurrentPosition.bind(this),
+		// 			this.handlecurrentPositionError.bind(this)
+		// 		);
+		// 	}else{
+		// 		this.handlecurrentPositionError();
+		// 	}
 
-		},
+		// },
 
 		handleCurrentPosition: function(location){
 			this.updateLocationInput(location.coords.latitude, location.coords.longitude);
