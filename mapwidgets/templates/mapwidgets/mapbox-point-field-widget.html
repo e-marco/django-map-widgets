@@ -1,31 +1,34 @@
 {% load i18n %}
 
-<div id="{{ name }}-mw-wrap">
+<div class="container text-center" id="{{ name }}-mw-wrap">
   {% block container %}
-    <div class="row mw-header">
-      <div class="col-12">
+    <div class="row mb-2">
         {% block header %}
-          <div class="mw-coordinates-wrap">
+          <div class="col-auto">
             <a  class="mw-btn mw-btn-primary mw-btn-coordinates">{% trans "Edit coordinates" %} <i class="icon-down-dir" ></i></a>
-            <div class="mw-coordinates-overlay hide">
-              <label for="{{ name }}-mw-overlay-latitude">
-                {% trans "Latitude:" %}
-                <input type="text" id="{{ name }}-mw-overlay-latitude" class="form-control mw-overlay-input mw-overlay-latitude" placeholder="{% trans 'Ex: 41.015137' %}"/>
-              </label>
-              <label for="{{ name }}-mw-overlay-longitude">
-                {% trans "Longitude:" %}
-                <input type="text" id="{{ name }}-mw-overlay-longitude" class="form-control mw-overlay-input mw-overlay-longitude" placeholder="{% trans 'Ex: 28.979530' %}"/>
-              </label>
-              <a class="mw-btn mw-btn-success mw-btn-coordinates-done pull-right">{% trans "Done" %}</a>
-            </div>
+          </div>
+
+          <div class="mw-coordinates-overlay hide">
+            <label for="{{ name }}-mw-overlay-latitude">
+              {% trans "Latitude:" %}
+              <input type="text" id="{{ name }}-mw-overlay-latitude" class="form-control mw-overlay-input mw-overlay-latitude" placeholder="{% trans 'Ex: 41.015137' %}"/>
+            </label>
+            <label for="{{ name }}-mw-overlay-longitude">
+              {% trans "Longitude:" %}
+              <input type="text" id="{{ name }}-mw-overlay-longitude" class="form-control mw-overlay-input mw-overlay-longitude" placeholder="{% trans 'Ex: 28.979530' %}"/>
+            </label>
+            <a class="mw-btn mw-btn-success mw-btn-coordinates-done pull-right">{% trans "Done" %}</a>
           </div>
 
           <!--<a class="mw-btn mw-btn-info mw-btn-my-location" >{% trans "Use My Location" %}</a>-->
-          <a class="mw-btn mw-btn-warning mw-btn-add-marker" ><i class="icon-location"></i> <span class="point-text">{% trans "Choose point on map" %}</span></a>
-          <div class="mw-adress-input-wrap pull-right" id="{{ name }}-geocoder-wrap">
+          <div class="col-auto me-auto">
+            <a class="mw-btn mw-btn-warning mw-btn-add-marker" ><i class="icon-location"></i> <span class="point-text">{% trans "Choose point on map" %}</span></a>
+          </div>
+          <div class="col-auto">
+            <div class="mw-adress-input-wrap" id="{{ name }}-geocoder-wrap">
+            </div>
           </div>
         {% endblock header %}
-      </div>
     </div>
 
     <div class="row">
@@ -43,8 +46,8 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-12 mw-footer">
+    <div class="row mt-2">
+      <div class="col-auto align-self-end">
         <span class="mw-help-text help-text"></span>
         <a class="mw-btn mw-btn-delete pull-right {{ serialized|yesno:"mw-btn-danger, mw-btn-default disabled" }}" ><i class="icon-trash-empty"></i></a>
       </div>
