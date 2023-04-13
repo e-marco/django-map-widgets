@@ -138,8 +138,8 @@
 		},
 
 		updateCoordinatesInputs: function(lat, lng){
-			$(".mw-overlay-latitude", this.wrapElemSelector).val(lat || "");
-			$(".mw-overlay-longitude", this.wrapElemSelector).val(lng || "");
+			$(".mw-overlay-latitude", this.wrapElemSelector).val(lat.toFixed(5) || "");
+			$(".mw-overlay-longitude", this.wrapElemSelector).val(lng.toFixed(5) || "");
 		},
 
 		handleCoordinatesInputsChange: function (e) {

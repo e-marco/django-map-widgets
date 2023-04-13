@@ -6,7 +6,7 @@
       <div class="col-12 mw-header">
         {% block header %}
           <div class="mw-coordinates-wrap">
-            <a  class="btn btn-primary form-control mw-btn-coordinates">{% trans "Edit coordinates" %} <i class="icon-down-dir" ></i></a>
+            <a  class="btn btn-primary mw-btn-coordinates">{% trans "Edit coordinates" %} <i class="icon-down-dir" ></i></a>
             <div class="mw-coordinates-overlay hide">
               <label for="{{ name }}-mw-overlay-latitude">
                 {% trans "Latitude:" %}
@@ -16,12 +16,12 @@
                 {% trans "Longitude:" %}
                 <input type="text" id="{{ name }}-mw-overlay-longitude" class="form-control mw-overlay-input mw-overlay-longitude" placeholder="{% trans 'Ex: 28.979530' %}"/>
               </label>
-              <a class="btn btn-success form-control mw-btn-coordinates-done pull-right">{% trans "Done" %}</a>
+              <a class="btn btn-success mw-btn-coordinates-done pull-right">{% trans "Done" %}</a>
             </div>
           </div>
 
           <!--<a class="mw-btn mw-btn-info mw-btn-my-location" >{% trans "Use My Location" %}</a>-->
-          <a class="btn btn-warning form-control mw-btn-add-marker" ><i class="icon-location"></i> <span class="point-text">{% trans "Choose point on map" %}</span></a>
+          <a class="btn btn-warning mw-btn-add-marker" ><i class="icon-location"></i> <span class="point-text">{% trans "Choose point on map" %}</span></a>
           <div class="mw-adress-input-wrap pull-right" id="{{ name }}-geocoder-wrap">
           </div>
         {% endblock header %}
@@ -46,7 +46,7 @@
     <div class="row">
       <div class="col-12 mw-footer">
         <span class="mw-help-text help-text"></span>
-        <a class="btn mw-btn-delete form-control pull-right {{ serialized|yesno:"btn-danger, btn-light disabled" }}" ><i class="icon-trash-empty"></i></a>
+        <a class="btn mw-btn-delete pull-right {{ serialized|yesno:"btn-danger, btn-light disabled" }}" ><i class="icon-trash-empty"></i></a>
       </div>
     </div>
     <div class="animated-loader"></div>
