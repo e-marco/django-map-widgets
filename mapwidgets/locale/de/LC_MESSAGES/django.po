@@ -45,6 +45,10 @@ msgstr "Fertig"
 msgid "Use My Location"
 msgstr "Benutze meine Position"
 
+#: mapwidgets/templates/mapwidgets/google-point-field-widget.html:23
+msgid "Choose point on map"
+msgstr "Position auf Karte auswählen"
+
 #: mapwidgets/templates/mapwidgets/google-point-field-widget.html:25
 msgid "Find a Location by Address"
 msgstr "Finden Sie einen Standort anhand der Adresse"
