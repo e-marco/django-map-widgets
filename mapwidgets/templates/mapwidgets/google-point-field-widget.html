@@ -3,9 +3,9 @@
 <div class="mw-wrap" id="{{ name }}-mw-wrap">
     {% block container %}
 	<div class="row mb-2">
-        <div class="mw-header">
+        <div class="col-12 mw-header">
             {% block header %}
-			<div class="col-auto text-center">
+			
                 <div class="mw-coordinates-wrap">
                     <a  class="mw-btn mw-btn-primary mw-btn-coordinates">{% trans "Edit Coordinates" %} <i class="icon-down-dir" ></i></a>
                     <div class="mw-coordinates-overlay hide">
@@ -20,15 +20,15 @@
                         <a class="mw-btn mw-btn-success mw-btn-coordinates-done pull-right">{% trans "Done" %}</a>
                     </div>
                 </div>
-			</div>
+			
 
           <!--<a class="mw-btn mw-btn-info mw-btn-my-location" >{% trans "Use My Location" %}</a>-->
-		  <div class="col-auto me-auto text-center">
+		  
                 <a class="mw-btn mw-btn-warning mw-btn-add-marker" ><i class="icon-location"></i> <span class="point-text">{% trans "Choose point on map" %}</span></a>
                 <div class="mw-adress-input-wrap pull-right">
                     <input type="text" class="form-control pull-right" id="{{ name }}-mw-google-address-input" role="presentation" autocomplete="off" placeholder="{% trans 'Find a Location by Address' %}" />
                 </div>
-			</div>
+			
             {% endblock header %}
         </div>
 	</div>
