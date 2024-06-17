@@ -16,7 +16,7 @@ def minify_if_not_debug(asset):
     """
         Transform template string `asset` by inserting '.min' if DEBUG=False
     """
-    return asset.format('' if not mw_settings.MINIFED else '.min')
+    return asset.format('' if not mw_settings.MINIFIED else '.min')
 
 
 class BasePointFieldMapWidget(BaseGeometryWidget):
@@ -50,8 +50,8 @@ class BasePointFieldMapWidget(BaseGeometryWidget):
 
         if self.custom_settings:
             custom_settings = MapWidgetSettings(app_settings=self.settings)
-            return json.dumps(getattr(custom_settings, self.settings_namespace))
-        return json.dumps(self.settings)
+            return getattr(custom_settings, self.settings_namespace)
+        return self.settings
 
 
 class GooglePointFieldWidget(BasePointFieldMapWidget):
@@ -73,7 +73,7 @@ class GooglePointFieldWidget(BasePointFieldMapWidget):
             )
         ]
 
-        if not mw_settings.MINIFED:  # pragma: no cover
+        if not mw_settings.MINIFIED:  # pragma: no cover
             js = js + [
                 'mapwidgets/js/jquery_init.js',
                 'mapwidgets/js/jquery_class.js',
@@ -110,7 +110,7 @@ class GooglePointFieldWidget(BasePointFieldMapWidget):
 
         extra_attrs = {
             'options': self.map_options(),
-            'field_value': json.dumps(field_value)
+            'field_value': field_value
         }
         attrs.update(extra_attrs)
         self.as_super = super(GooglePointFieldWidget, self)
@@ -141,7 +141,7 @@ class MapboxPointFieldWidget(BasePointFieldMapWidget):
             "https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.min.js",
         ]
 
-        if not mw_settings.MINIFED:  # pragma: no cover
+        if not mw_settings.MINIFIED:  # pragma: no cover
             js = js + [
                 'mapwidgets/js/jquery_init.js',
                 'mapwidgets/js/jquery_class.js',
@@ -161,7 +161,7 @@ class MapboxPointFieldWidget(BasePointFieldMapWidget):
         if not settings.get("access_token"):
             # Use global `access_token` if it is not set in widget settings.
             settings["access_token"] = mw_settings.MAPBOX_API_KEY
-        return json.dumps(settings)
+        return settings
 
     def render(self, name, value, attrs=None, renderer=None):
         if attrs is None:
@@ -185,7 +185,7 @@ class MapboxPointFieldWidget(BasePointFieldMapWidget):
             field_value['lat'] = latitude
         extra_attrs = {
             'options': self.map_options(),
-            'field_value': json.dumps(field_value)
+            'field_value': field_value
         }
         attrs.update(extra_attrs)
         self.as_super = super(MapboxPointFieldWidget, self)
@@ -218,7 +218,7 @@ class PointFieldInlineWidgetMixin(object):
         is_formset_empty_form_template = '__prefix__' in name
         widget_data = self.get_js_widget_data(name, element_id)
         attrs.update({
-            'js_widget_data': json.dumps(widget_data),
+            'js_widget_data': widget_data,
             'is_formset_empty_form_template': is_formset_empty_form_template
         })
         self.as_super = super(PointFieldInlineWidgetMixin, self)
@@ -247,7 +247,7 @@ class GooglePointFieldInlineWidget(PointFieldInlineWidgetMixin, GooglePointField
             )
         ]
 
-        if not mw_settings.MINIFED:  # pragma: no cover
+        if not mw_settings.MINIFIED:  # pragma: no cover
             js = js + [
                 'mapwidgets/js/jquery_init.js',
                 'mapwidgets/js/jquery_class.js',
@@ -363,7 +363,7 @@ class GoogleStaticOverlayMapWidget(GoogleStaticMapWidget):
                 minify_if_not_debug("mapwidgets/css/magnific-popup{}.css"),
             )
         }
-        if not mw_settings.MINIFED:  # pragma: no cover
+        if not mw_settings.MINIFIED:  # pragma: no cover
             js = (
                 "mapwidgets/js/jquery_init.js",
                 "mapwidgets/js/jquery.custom.magnific-popup.js",

@@ -1,14 +1,17 @@
 {% extends "mapwidgets/google-point-field-widget.html" %}
 
+{{ js_widget_data|json_script:'data-widgetData' }}
+
 {% block javascript %}
     <script type="application/javascript">
 
         (function($) {
-            var mapOptions = JSON.parse("{{ options|escapejs }}");
-            var fieldValue = JSON.parse("{{ field_value|escapejs }}");
+            var mapOptions = JSON.parse(document.getElementById('data-mapOptions').textContent);
+            var fieldValue = JSON.parse(document.getElementById('data-fieldValue').textContent);
+
             {% if not is_formset_empty_form_template %}
 
-                var widgetData = JSON.parse("{{ js_widget_data|escapejs }}");
+                var widgetData = JSON.parse(document.getElementById('data-widgetData').textContent);
                 var wrapElemSelector = widgetData.wrapElemSelector;
                 var mapElemID = widgetData.mapElemID;
                 var googleAutoInputID = widgetData.googleAutoInputID;
@@ -42,7 +45,7 @@
                 var widget = new DjangoGooglePointFieldWidget(mapWidgetOptions);
 
             {% else %}
-                var widgetDataTemplate = JSON.parse("{{ js_widget_data|escapejs }}");
+                var widgetDataTemplate = JSON.parse(document.getElementById('data-widgetData').textContent);
                 var widgetGenerater = new DjangoMapWidgetGenerater({
                     "widgetDataTemplate": widgetDataTemplate,
                     "mapOptions": mapOptions,

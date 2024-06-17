@@ -59,11 +59,15 @@
     {% endblock container %}
 </div>
 
+{{ options|json_script:"data-mapOptions" }}
+{{ field_value|json_script:"data-fieldValue" }}
+
+
 {% block javascript %}
     <script type="application/javascript">
         (function($) {
-            var mapOptions = JSON.parse("{{ options|escapejs }}");
-            var field_value = JSON.parse("{{ field_value|escapejs }}");
+            var mapOptions = JSON.parse(document.getElementById('data-mapOptions').textContent);
+            var fieldValue = JSON.parse(document.getElementById('data-fieldValue').textContent);
 
             var wrapElemSelector = "#{{ name }}-mw-wrap";
             var mapElemID = "{{ name }}-map-elem";
@@ -73,7 +77,7 @@
             const mapWidgetOptions = {
                 locationInput: $(locationInputID),
                 wrapElemSelector: wrapElemSelector,
-                locationFieldValue: field_value,
+                locationFieldValue: fieldValue,
                 mapElement: document.getElementById(mapElemID),
                 mapCenterLocationName: mapOptions.mapCenterLocationName,
                 mapCenterLocation: mapOptions.mapCenterLocation,

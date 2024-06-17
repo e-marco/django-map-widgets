@@ -71,7 +71,7 @@ DEFAULTS = {
     "LANGUAGE": "en",
     "LIBRARIES": "places",
     "srid": 4326,
-    "MINIFED": not django_settings.DEBUG,
+    "MINIFIED": not django_settings.DEBUG,
     "GOOGLE_MAP_API_SIGNATURE": "",
     "GOOGLE_MAP_API_KEY": "",
     "MAPBOX_API_KEY": "",

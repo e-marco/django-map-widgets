@@ -17,7 +17,9 @@
 
 			var autocomplete = new google.maps.places.Autocomplete(this.addressAutoCompleteInput, this.GooglePlaceAutocompleteOptions);
 			google.maps.event.addListener(autocomplete, 'place_changed', this.handleAutoCompletePlaceChange.bind(this, autocomplete));
-			google.maps.event.addDomListener(this.addressAutoCompleteInput, 'keydown', this.handleAutoCompleteInputKeyDown.bind(this));
+			//google.maps.event.addDomListener(this.addressAutoCompleteInput, 'keydown', this.handleAutoCompleteInputKeyDown.bind(this));
+			//google.maps.event.addDomListener() is deprecated
+			this.addressAutoCompleteInput.addEventListener('keydown', this.handleAutoCompleteInputKeyDown.bind(this));
 			this.geocoder = new google.maps.Geocoder;
 			this.initializeMap.bind(this)();
 		},
@@ -138,8 +140,8 @@
 		},
 
 		updateCoordinatesInputs: function(lat, lng){
-			$(".mw-overlay-latitude", this.wrapElemSelector).val(lat.toFixed(5) || "");
-			$(".mw-overlay-longitude", this.wrapElemSelector).val(lng.toFixed(5) || "");
+			$(".mw-overlay-latitude", this.wrapElemSelector).val(Number(lat).toFixed(5) || "");
+			$(".mw-overlay-longitude", this.wrapElemSelector).val(Number(lng).toFixed(5) || "");
 		},
 
 		handleCoordinatesInputsChange: function (e) {
