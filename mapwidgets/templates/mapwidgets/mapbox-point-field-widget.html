@@ -59,50 +59,50 @@
 </div>
 
 
+
+{% block javascript %}
+
 {{ options|json_script:"data-mapOptions" }}
 {{ field_value|json_script:"data-fieldValue" }}
 
-{% block javascript %}
-  <script type="application/javascript">
-      (function($) {
-          var mapOptions = JSON.parse(document.getElementById('data-mapOptions').textContent);
-          var fieldValue = JSON.parse(document.getElementById('data-fieldValue').textContent);
+<script type="application/javascript">
+  (function() {
+      var mapOptions = JSON.parse(document.getElementById('data-mapOptions').textContent);
+      var fieldValue = JSON.parse(document.getElementById('data-fieldValue').textContent);
 
-          var wrapElemSelector = "#{{ name }}-mw-wrap";
-          var mapElemID = "{{ name }}-map-elem";
-          var mapboxGeocoderWrapID = "{{ name }}-geocoder-wrap";
-          var locationInputID = "#{{ id }}";
+      var wrapElemSelector = document.querySelector("#{{ name }}-mw-wrap");
+      var mapElemID = "{{ name }}-map-elem";
+      var mapboxGeocoderWrapID = "{{ name }}-geocoder-wrap";
+      var locationInputID = document.querySelector("#{{ id }}");
 
-          var mapWidgetOptions = {
-              locationInput: $(locationInputID),
-              geocoderWrapID: mapboxGeocoderWrapID,
-              geocoderInputPlaceholderText: "{% trans 'Find a Location by Address' %}",
-              wrapElemSelector: wrapElemSelector,
-              locationFieldValue: fieldValue,
-              mapElement: document.getElementById(mapElemID),
-              mapCenterLocationName: mapOptions.mapCenterLocationName,
-              mapCenterLocation: mapOptions.mapCenterLocation,
-              coordinatesOverlayToggleBtn: $(".mw-btn-coordinates", wrapElemSelector),
-              coordinatesOverlayDoneBtn: $(".mw-btn-coordinates-done", wrapElemSelector),
-              coordinatesOverlayInputs: $(".mw-overlay-input", wrapElemSelector),
-              coordinatesOverlay: $(".mw-coordinates-overlay", wrapElemSelector),
-              //myLocationBtn: $(".mw-btn-my-location", wrapElemSelector),
-              mapOptions: mapOptions,
-              deleteBtn: $(".mw-btn-delete", wrapElemSelector),
-              addMarkerBtn: $(".mw-btn-add-marker", wrapElemSelector),
-              loaderOverlayElem: $(".mw-loader-overlay", wrapElemSelector),
-              zoom: mapOptions.zoom,
-              markerFitZoom: mapOptions.markerFitZoom,
-              streetViewControl: mapOptions.streetViewControl,
-              markerCreateTriggerNameSpace: "mapbox_point_map_widget:marker_create",
-              markerChangeTriggerNameSpace: "mapbox_point_map_widget:marker_change",
-              markerDeleteTriggerNameSpace: "mapbox_point_map_widget:marker_delete",
-              placeChangedTriggerNameSpace: "mapbox_point_map_widget:place_changed"
-          };
-          new DjangoMapboxPointFieldWidget(mapWidgetOptions);
-          {% block extra_javascript %}
+      var mapWidgetOptions = {
+          locationInput: locationInputID,
+          geocoderWrapID: mapboxGeocoderWrapID,
+          geocoderInputPlaceholderText: "{% trans 'Find a Location by Address' %}",
+          wrapElemSelector: wrapElemSelector,
+          locationFieldValue: fieldValue,
+          mapElement: document.getElementById(mapElemID),
+          mapCenterLocationName: mapOptions.mapCenterLocationName,
+          mapCenterLocation: mapOptions.mapCenterLocation,
+          coordinatesOverlayToggleBtn: wrapElemSelector.querySelector(".mw-btn-coordinates"),
+          coordinatesOverlayDoneBtn: wrapElemSelector.querySelector(".mw-btn-coordinates-done"),
+          coordinatesOverlayInputs: wrapElemSelector.querySelectorAll(".mw-overlay-input"),
+          coordinatesOverlay: wrapElemSelector.querySelector(".mw-coordinates-overlay"),
+          // myLocationBtn: wrapElemSelector.querySelector(".mw-btn-my-location"),
+          mapOptions: mapOptions,
+          deleteBtn: wrapElemSelector.querySelector(".mw-btn-delete"),
+          addMarkerBtn: wrapElemSelector.querySelector(".mw-btn-add-marker"),
+          loaderOverlayElem: wrapElemSelector.querySelector(".mw-loader-overlay"),
+          zoom: mapOptions.zoom,
+          markerFitZoom: mapOptions.markerFitZoom,
+          streetViewControl: mapOptions.streetViewControl,
+          markerCreateTriggerNameSpace: "mapbox_point_map_widget:marker_create",
+          markerChangeTriggerNameSpace: "mapbox_point_map_widget:marker_change",
+          markerDeleteTriggerNameSpace: "mapbox_point_map_widget:marker_delete",
+          placeChangedTriggerNameSpace: "mapbox_point_map_widget:place_changed"
+      };
+      new DjangoMapboxPointFieldWidget(mapWidgetOptions);
+  })();
+</script>
 
-          {% endblock %}
-      })(mapWidgets.jQuery);
-  </script>
 {% endblock javascript %}

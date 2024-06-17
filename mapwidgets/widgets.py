@@ -75,8 +75,6 @@ class GooglePointFieldWidget(BasePointFieldMapWidget):
 
         if not mw_settings.MINIFIED:  # pragma: no cover
             js = js + [
-                'mapwidgets/js/jquery_init.js',
-                'mapwidgets/js/jquery_class.js',
                 'mapwidgets/js/django_mw_base.js',
                 'mapwidgets/js/mw_google_point_field.js',
             ]
@@ -143,8 +141,6 @@ class MapboxPointFieldWidget(BasePointFieldMapWidget):
 
         if not mw_settings.MINIFIED:  # pragma: no cover
             js = js + [
-                'mapwidgets/js/jquery_init.js',
-                'mapwidgets/js/jquery_class.js',
                 'mapwidgets/js/django_mw_base.js',
                 'mapwidgets/js/mw_mapbox_point_field.js',
             ]
@@ -249,8 +245,6 @@ class GooglePointFieldInlineWidget(PointFieldInlineWidgetMixin, GooglePointField
 
         if not mw_settings.MINIFIED:  # pragma: no cover
             js = js + [
-                'mapwidgets/js/jquery_init.js',
-                'mapwidgets/js/jquery_class.js',
                 'mapwidgets/js/django_mw_base.js',
                 'mapwidgets/js/mw_google_point_field.js',
                 'mapwidgets/js/mw_google_point_field_generater.js'

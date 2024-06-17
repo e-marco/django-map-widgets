@@ -1,25 +1,23 @@
-(function($) {
-    DjangoMapWidgetGenerater = $.Class.extend({
+(function() {
+    class DjangoMapWidgetGenerater {
+        constructor(options) {
+            Object.assign(this, options);
+            document.addEventListener('formset:added', this.handle_added_formset_row.bind(this));
+        }
 
-        init: function (options) {
-            $.extend(this, options);
-            $(document).on('formset:added', this.handle_added_formset_row.bind(this));
-        },
-
-        handle_added_formset_row: function (e, row, prefix) {
+        handle_added_formset_row(e, row, prefix) {
             var mapOptions = this.mapOptions;
             var widgetData = {};
 
-            prefix = prefix || $(e.target).attr("id").split("-")[0];
+            prefix = prefix || e.target.id.split("-")[0];
             var id_regex = new RegExp("(" + prefix + "-(\\d+|__prefix__))");
 
             row = row || e.target;
-            var numberPattern = /\d+/g;
-            var row_index = $(row).attr("id").match(numberPattern);
+            var row_index = row.id.match(/\d+/g);
             var replacement = prefix + "-" + row_index;
-            $.each(this.widgetDataTemplate, function (key, value) {
-                widgetData[key] = value.replace(id_regex, replacement)
-            });
+            for (var key in this.widgetDataTemplate) {
+                widgetData[key] = this.widgetDataTemplate[key].replace(id_regex, replacement);
+            }
 
             var wrapElemSelector = widgetData.wrapElemSelector;
             var mapElemID = widgetData.mapElemID;
@@ -27,22 +25,22 @@
             var locationInputID = widgetData.locationInputID;
 
             var mapWidgetOptions = {
-                locationInput: $(locationInputID),
+                locationInput: document.querySelector(locationInputID),
                 wrapElemSelector: wrapElemSelector,
                 locationFieldValue: this.fieldValue,
                 mapApiKey: null,
                 mapElement: document.getElementById(mapElemID),
                 mapCenterLocationName: mapOptions.mapCenterLocationName,
                 mapCenterLocation: mapOptions.mapCenterLocation,
-                coordinatesOverlayToggleBtn: $(".mw-btn-coordinates", wrapElemSelector),
-                coordinatesOverlayDoneBtn: $(".mw-btn-coordinates-done", wrapElemSelector),
-                coordinatesOverlayInputs: $(".mw-overlay-input", wrapElemSelector),
-                coordinatesOverlay: $(".mw-coordinates-overlay", wrapElemSelector),
-                myLocationBtn: $(".mw-btn-my-location", wrapElemSelector),
+                coordinatesOverlayToggleBtn: document.querySelector(".mw-btn-coordinates", wrapElemSelector),
+                coordinatesOverlayDoneBtn: document.querySelector(".mw-btn-coordinates-done", wrapElemSelector),
+                coordinatesOverlayInputs: document.querySelectorAll(".mw-overlay-input", wrapElemSelector),
+                coordinatesOverlay: document.querySelector(".mw-coordinates-overlay", wrapElemSelector),
+                myLocationBtn: document.querySelector(".mw-btn-my-location", wrapElemSelector),
                 addressAutoCompleteInput: document.getElementById(googleAutoInputID),
-                deleteBtn: $(".mw-btn-delete", wrapElemSelector),
-                addMarkerBtn: $(".mw-btn-add-marker", wrapElemSelector),
-                loaderOverlayElem: $(".mw-loader-overlay", wrapElemSelector),
+                deleteBtn: document.querySelector(".mw-btn-delete", wrapElemSelector),
+                addMarkerBtn: document.querySelector(".mw-btn-add-marker", wrapElemSelector),
+                loaderOverlayElem: document.querySelector(".mw-loader-overlay", wrapElemSelector),
                 zoom: mapOptions.zoom,
                 markerFitZoom: mapOptions.markerFitZoom,
                 GooglePlaceAutocompleteOptions: mapOptions.GooglePlaceAutocompleteOptions,
@@ -53,6 +51,7 @@
             };
             new DjangoGooglePointFieldWidget(mapWidgetOptions);
         }
-    });
-})(mapWidgets.jQuery);
+    }
 
+    window.DjangoMapWidgetGenerater = DjangoMapWidgetGenerater;
+})();
